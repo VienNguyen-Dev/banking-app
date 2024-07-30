@@ -11,6 +11,7 @@ const Home = () => {
           <HeaderBox type="greeting" title={`Wellcome`} user={loggedIn.firstName} subtext="Access & manage your account and transactions efficiently." />
         </header>
         <TotalBalanceBox accounts={[]} totalBanks={1} totalCurrentBalance={2698.12} />
+        Recent transcaction
       </div>
     </section>
   );
