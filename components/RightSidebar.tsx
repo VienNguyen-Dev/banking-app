@@ -9,10 +9,10 @@ const RightSidebar = ({ transactions, user, banks }: RightSidebarProps) => {
         <div className="profile-banner" />
         <div className="profile">
           <div className="profile-img ">
-            <span className="text-26 font-semibold text-blue-500">{user?.firstName[0]}</span>
+            <span className="text-26 font-semibold text-blue-500">{user.firstName[0]}</span>
           </div>
           <div className="profile-details">
-            <h1 className="profile-name">{user.name}</h1>
+            <h1 className="profile-name">{`${user.firstName} ${user.lastName}`}</h1>
             <p className="profile-email">{user.email}</p>
           </div>
         </div>
@@ -28,9 +28,11 @@ const RightSidebar = ({ transactions, user, banks }: RightSidebarProps) => {
         {banks.length > 0 && (
           <div className="flex flex-1 flex-col relative justify-center">
             <div className=" relative z-10">
-              <BankCard key={banks[0].$id} account={banks[0]} userName={user.name} showBalance={false} />
+              <BankCard key={banks[0].$id} account={banks[0]} userName={`${user.firstName} ${user.lastName}`} showBalance={false} />
             </div>
-            <div className=" absolute z-0 top-8 right-0 w-[90%]">{banks[1] && <BankCard key={banks[1].$id} account={banks[1]} userName={user.name} showBalance={false} />}</div>
+            <div className=" absolute z-0 top-8 right-0 w-[90%]">
+              {banks[1] && <BankCard key={banks[1].$id} account={banks[1]} userName={`${user.firstName} ${user.lastName}`} showBalance={false} />}
+            </div>
           </div>
         )}
       </section>

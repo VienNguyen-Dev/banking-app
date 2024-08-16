@@ -13,6 +13,7 @@ import { authFormSchema } from "@/lib/utils";
 import { Loader2 } from "lucide-react";
 import { signIn, signUp } from "@/lib/actions/user.actions";
 import { useRouter } from "next/navigation";
+import PlaidLink from "../PlaidLink";
 
 const AuthForm = ({ type }: { type: string }) => {
   const [user, setUser] = useState(null);
@@ -71,10 +72,12 @@ const AuthForm = ({ type }: { type: string }) => {
       </header>
       {/* Authentication */}
       {user ? (
-        <div className="">{/* Authentication by flaid account */}</div>
+        <div className="">
+          <PlaidLink user={user} variant="primary" />
+        </div>
       ) : (
         <Form {...form}>
-          <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-8">
+          <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-6">
             {type === "sign-in" && (
               <>
                 <CustomInput control={form.control} name="email" placeholder="Enter your Email" label="Email" />
@@ -88,13 +91,13 @@ const AuthForm = ({ type }: { type: string }) => {
                   <CustomInput control={form.control} name="lastName" placeholder="Ex:Vien" label="Last Name" />
                 </div>
                 <CustomInput control={form.control} name="address1" placeholder="Enter your specific address" label="Address" />
-                <CustomInput control={form.control} name="city" placeholder="Ex:Ho Chi Minh" label="City" />
+                <CustomInput control={form.control} name="city" placeholder="Ex:Some City" label="City" />
                 <div className="flex gap-4">
-                  <CustomInput control={form.control} name="state" placeholder="Ex: Q1" label="State/Distric" />
-                  <CustomInput control={form.control} name="postalCode" placeholder="Ex:700000" label="Postal Code" />
+                  <CustomInput control={form.control} name="state" placeholder="Ex:NY,CA" label="State" />
+                  <CustomInput control={form.control} name="postalCode" placeholder="Ex:11101" label="Postal Code" />
                 </div>
                 <div className="flex gap-4">
-                  <CustomInput control={form.control} name="dateOfBirth" placeholder="DD-MM-YYYY" label="Date of Birth" />
+                  <CustomInput control={form.control} name="dateOfBirth" placeholder="YYYY-MM-DD" label="Date of Birth" />
                   <CustomInput control={form.control} name="ssn" placeholder="Ex:1234" label="SSN" />
                 </div>
                 <CustomInput control={form.control} name="email" placeholder="Enter your Email" label="Email" />

@@ -16,7 +16,7 @@ const Footer = ({ type = "desktop", user }: FooterProps) => {
         <span className="text-26 font-semibold text-blue-500">{user.firstName[0]}</span>
       </div>
       <div className={`${type === "mobile" ? "footer_email-mobile" : "footer_email"}`}>
-        <h1 className=" font-semibold text-14 truncate text-gray-800">{user.name}</h1>
+        <h1 className=" font-semibold text-14 truncate text-gray-800">{`${user.firstName} ${user.lastName}`}</h1>
         <p className=" font-normal text-14 truncate text-gray-700">{user.email}</p>
       </div>
       <div className={`${type === "mobile" ? "footer_image-mobile" : "footer_image"}`} onClick={handleSignOut}>

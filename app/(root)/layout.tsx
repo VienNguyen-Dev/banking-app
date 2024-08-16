@@ -24,7 +24,6 @@ export default async function RootLayout({
         </div>
         {children}
       </div>
-      <RightSidebar transactions={[]} user={loggedIn} banks={[{ currentBalance: 1234.12 }, { currentBalance: 1756.12 }]} />
     </main>
   );
 }
