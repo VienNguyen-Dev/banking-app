@@ -1,5 +1,4 @@
 import MobileNav from "@/components/MobileNav";
-import RightSidebar from "@/components/RightSidebar";
 import Sidebar from "@/components/Sidebar";
 import { getLoggedInUser } from "@/lib/actions/user.actions";
 import Image from "next/image";

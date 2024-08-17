@@ -50,19 +50,18 @@ export const getAccounts = async ({ userId }: getAccountsProps) => {
 export const getAccount = async ({ appwriteItemId }: getAccountProps) => {
   try {
     const bank = await getBank({ documentId: appwriteItemId });
-    const bankData = bank.documents[0];
-    const accountResponse = await plaidClient.accountsGet({ access_token: bankData.accessToken });
+    const accountResponse = await plaidClient.accountsGet({ access_token: bank.accessToken });
     const accountData = accountResponse.data.accounts[0];
     //Get all tranfer transaction of a bank account
-    const tranferTransactionData = await getTransactionByBankId(bankData.$id);
+    const tranferTransactionData = await getTransactionByBankId({ bankId: bank.$id });
 
     const tranferTransaction = tranferTransactionData.documents.map((transaction: Transaction) => ({
       id: transaction.$id,
       name: transaction.name,
-      paymentChannel: transaction.paymentChannel,
+      paymentChannel: transaction.channel,
       amount: transaction.amount,
       category: transaction.category,
-      date: transaction.date,
+      date: transaction.$createdAt,
       type: transaction.senderBankId === bank.$id ? "debit" : "credit",
     }));
     const institution = await getInstitution({ institutionId: accountResponse.data.item.institution_id! });
@@ -75,13 +74,13 @@ export const getAccount = async ({ appwriteItemId }: getAccountProps) => {
       availableBalance: accountData.balances.available!,
       currentBalance: accountData.balances.current!,
       officialName: accountData.name,
-      mask: accountData.mask,
-      institutionId: institution.$id,
+      mask: accountData.mask!,
+      institutionId: institution.institution_id,
       name: accountData.name as string,
       type: accountData.type as string,
       subtype: accountData.subtype as string,
       appwriteItemId: bank.$id,
-      sharableId: bankData.sharableId,
+      sharableId: bank.sharableId,
     };
     const allTransactions = [...tranferTransaction, ...getTranferTransactionFromPlaid].sort((a, b) => new Date(b.time).getTime() - new Date(a.time).getTime());
     return parseStringify({ data: account, allTransactions });

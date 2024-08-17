@@ -11,8 +11,8 @@ const {
 export const getTransactionByBankId = async ({ bankId }: getTransactionsByBankIdProps) => {
   try {
     const { database } = await createAdminClient();
-    const transaction = await database.listDocuments(DATABASE_ID!, TRANSACTION_COLLECTION_ID!, [Query.equal("bankId", [bankId])]);
-    return parseStringify(transaction);
+    const transactions = await database.listDocuments(DATABASE_ID!, TRANSACTION_COLLECTION_ID!, [Query.equal("senderBankId", [bankId])]);
+    return parseStringify(transactions);
   } catch (error) {
     console.log("Error while get transaction of bank", error);
   }

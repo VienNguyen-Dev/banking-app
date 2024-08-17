@@ -2,6 +2,7 @@ import { formatAmount } from "@/lib/utils";
 import Image from "next/image";
 import Link from "next/link";
 import React from "react";
+import Copy from "./Copy";
 
 const BankCard = ({ account, userName, showBalance }: CreditCardProps) => {
   return (
@@ -10,7 +11,7 @@ const BankCard = ({ account, userName, showBalance }: CreditCardProps) => {
         <div className="bank-card_content">
           <div className="">
             <h1 className=" font-semibold text-16 text-white">{userName}</h1>
-            <p className=" font-ibm-plex-serifs font-black text-white">{formatAmount(account.currentBalance)}</p>
+            {showBalance && <p className=" font-ibm-plex-serifs font-black text-white">{formatAmount(account.currentBalance)}</p>}
           </div>
           <article className="flex flex-col gap-4">
             <div className="flex justify-between items-center">
@@ -28,6 +29,7 @@ const BankCard = ({ account, userName, showBalance }: CreditCardProps) => {
         </div>
         <Image src={"/icons/lines.png"} alt="lines" width={360} height={190} className="top-0 left-0 absolute" />
       </Link>
+      {showBalance && <Copy title={account.sharableId} />}
     </div>
   );
 };
