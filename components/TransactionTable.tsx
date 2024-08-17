@@ -45,7 +45,7 @@ const TransactionTable = ({ transactions }: TransactionTableProps) => {
                 <CategoryBadge category={status} />
               </TableCell>
               <TableCell className="pl-2 pr-10 min-w-32 text-[14px]">{formatDateTime(new Date(t.date)).dateTime}</TableCell>
-              <TableCell className="pl-2 pr-10 capitalize max-xl:hidden">{t.paymentChannel}</TableCell>
+              <TableCell className="pl-2 pr-10 capitalize max-xl:hidden min-w-28">{t.paymentChannel}</TableCell>
               <TableCell className="pl-2 pr-10 max-xl:hidden">
                 <CategoryBadge category={t.category} />
               </TableCell>
