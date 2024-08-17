@@ -73,7 +73,7 @@ export const getAccount = async ({ appwriteItemId }: getAccountProps) => {
       id: accountData.account_id,
       availableBalance: accountData.balances.available!,
       currentBalance: accountData.balances.current!,
-      officialName: accountData.name,
+      officialName: accountData.official_name,
       mask: accountData.mask!,
       institutionId: institution.institution_id,
       name: accountData.name as string,
