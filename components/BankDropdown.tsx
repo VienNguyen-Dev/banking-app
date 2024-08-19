@@ -12,12 +12,16 @@ const BankDropdown = ({ accounts, setValue, otherStyles }: BankDropdownProps) =>
   const handleBankChange = (id: string) => {
     const account = accounts.find((a) => a.appwriteItemId === id)!;
     setSelected(account);
+    const searchParamsUrl = new URLSearchParams(searchPrams.toString());
+    searchParamsUrl.set("id", id);
+    searchParamsUrl.set("page", "1");
     const newUrl = formUrlQuery({
-      params: searchPrams.toString(),
+      params: searchParamsUrl.toString(),
       key: "id",
       value: id,
     });
     router.push(newUrl, { scroll: false });
+
     if (setValue) {
       setValue("senderBank", id);
     }
