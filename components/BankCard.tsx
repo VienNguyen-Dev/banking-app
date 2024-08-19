@@ -19,7 +19,7 @@ const BankCard = ({ account, userName, showBalance }: CreditCardProps) => {
               <p className="text-white">&#9679;&#9679; / &#9679;&#9679;</p>
             </div>
             <p className="text-white font-semibold text-14 tracking-[1.8px]">
-              &#9679;&#9679;&#9679;&#9679; &#9679;&#9679;&#9679;&#9679; &#9679;&#9679;&#9679;&#9679; <span>1234</span>
+              &#9679;&#9679;&#9679;&#9679; &#9679;&#9679;&#9679;&#9679; &#9679;&#9679;&#9679;&#9679; <span>{account.mask}</span>
             </p>
           </article>
         </div>
