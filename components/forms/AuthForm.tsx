@@ -108,7 +108,7 @@ const AuthForm = ({ type }: { type: string }) => {
             <Button disabled={isLoading} type="submit" className="form-btn w-full">
               {isLoading ? (
                 <>
-                  <Loader2 size={20} className=" animate-spin ml-2" />
+                  <Loader2 size={20} className=" animate-spin mr-2" />
                   Loading...
                 </>
               ) : (
